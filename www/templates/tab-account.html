@@ -2,10 +2,10 @@
   <ion-content>
     <ion-list>
     <ion-toggle  ng-model="settings.enableFriends">
-        Enable Friends
+        Show Friends
     </ion-toggle>
     </ion-list>
-    <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="user in users" type="item-text-wrap">
+    <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="user in users" type="item-text-wrap" ng-show="settings.enableFriends">
         <h2>{{user.name}} {{user.lastname}}, {{user.age}} ans<h2>
         <p>{{user.motto}}</p>
         <p>{{user.adress}}</p>
