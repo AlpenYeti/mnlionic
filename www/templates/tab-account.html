@@ -5,5 +5,12 @@
         Enable Friends
     </ion-toggle>
     </ion-list>
+    <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="user in users" type="item-text-wrap">
+        <h2>{{user.name}} {{user.lastname}}, {{user.age}} ans<h2>
+        <p>{{user.motto}}</p>
+        <p>{{user.adress}}</p>
+        <p>{{user.phone}}</p>
+        <p>{{user.position.lat}}, {{user.position.lng}}</p>
+    </ion-item>
   </ion-content>
 </ion-view>

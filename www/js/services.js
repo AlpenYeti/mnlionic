@@ -47,4 +47,26 @@ angular.module('starter.services', [])
       return null;
     }
   };
+})
+
+.factory('Users', function($http, $q) {
+    var deferred = $q.defer();
+    $http.get('http://carbillet.net/api-digitalGrenoble/users/')
+    .success(function(data,status){
+        deferred.resolve(data);
+    })
+    .error(function(data,status){
+        deferred.reject('Nope');
+    });
+
+    return {
+        all : function() {
+            return deferred.promise;
+        }
+    };
+    // return {
+    //     all: function() {
+    //         return users;
+    //     }
+    // };
 });

@@ -20,12 +20,24 @@ angular.module('starter.controllers', [])
 })
 
 
-.controller("MapCtrl", function($scope) {
-    })
+.controller("MapCtrl",function($scope, Users) {
+    angular.extend($scope, {
+        center: {
+            lat:45.182278829823446,
+            lng:5.730400085449219,
+            zoom:12
+        }
+    });
+})
 
 
-.controller('AccountCtrl', function($scope) {
+.controller('AccountCtrl', ['$scope','Users', function($scope, Users) {
   $scope.settings = {
     enableFriends: false
   };
-});
+  $scope.users = Users.all().then(function(users){
+      $scope.users = users.users;
+  }, function(msg){
+      alert(msg);
+  });
+}]);
