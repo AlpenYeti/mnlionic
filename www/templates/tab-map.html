@@ -1,5 +1,10 @@
 <ion-view view-title="Map">
   <ion-content>
-      <leaflet center="center"></leaflet>
+      <leaflet center="center" markers="markers"></leaflet>
+      <hr/>
+      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="user in users" type="item-text-wrap" ng-show="settings.enableFriends" href="#/tab/users/{{user.idUser}}">
+          <img ng-src="/img/ionic.png" style="width: 40px; height: 40px"><h2>{{user.name}} {{user.lastname}}, {{user.age}} ans</h2>
+          <i class="icon ion-chevron-right icon-accessory"></i>
+      </ion-item>
   </ion-content>
 </ion-view>

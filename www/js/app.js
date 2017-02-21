@@ -77,10 +77,20 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','u
         controller: 'AccountCtrl'
       }
     }
+  })
+
+  .state('tab.profil', {
+    url: '/profil/:userId',
+    views: {
+      'tab-profil': {
+        templateUrl: 'templates/tab-profil.html',
+        controller: 'ProfilCtrl'
+      }
+    }
   });
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/tab/map');
+  $urlRouterProvider.otherwise('/tab/account');
   function runBlock($rootScope) {
    angular.extend($rootScope, {
      center: {},

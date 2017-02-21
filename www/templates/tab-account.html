@@ -5,12 +5,9 @@
         Show Friends
     </ion-toggle>
     </ion-list>
-    <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="user in users" type="item-text-wrap" ng-show="settings.enableFriends">
-        <h2>{{user.name}} {{user.lastname}}, {{user.age}} ans<h2>
-        <p>{{user.motto}}</p>
-        <p>{{user.adress}}</p>
-        <p>{{user.phone}}</p>
-        <p>{{user.position.lat}}, {{user.position.lng}}</p>
+    <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="user in users" type="item-text-wrap" ng-show="settings.enableFriends" href="#/tab/users/{{user.idUser}}">
+        <img ng-src="/img/ionic.png" style="width: 32px; height: 32px"><h2>{{user.name}} {{user.lastname}}, {{user.age}} ans</h2>
+        <i class="icon ion-chevron-right icon-accessory"></i>
     </ion-item>
   </ion-content>
 </ion-view>
