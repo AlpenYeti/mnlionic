@@ -69,5 +69,9 @@ angular.module('starter.controllers', ['ui-leaflet'])
 
 }])
 .controller('ProfilCtrl', function($scope, $stateParams, Users) {
-    $scope.users = Users.get($stateParams.chatId);
+    Users.all().then(function(allUsers){
+        console.log($stateParams.idUser);
+        $scope.user = Users.get($stateParams.idUser, allUsers);
+        console.log($scope.user);
+    });
 });

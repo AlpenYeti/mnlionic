@@ -80,9 +80,9 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','u
   })
 
   .state('tab.profil', {
-    url: '/profil/:userId',
+    url: '/profil/:idUser',
     views: {
-      'tab-profil': {
+      'tab-account': {
         templateUrl: 'templates/tab-profil.html',
         controller: 'ProfilCtrl'
       }

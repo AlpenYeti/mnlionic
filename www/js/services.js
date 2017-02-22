@@ -63,10 +63,11 @@ angular.module('starter.services', [])
         all : function() {
             return deferred.promise;
         },
-        get: function(userId) {
-          for (var i = 0; i < users.length; i++) {
-            if (users[i].id === parseInt(usertId)) {
-              return users[i];
+        get: function(idUser, allUsers) {
+          for (var i = 0; i < allUsers.users.length; i++) {
+            if (allUsers.users[i].idUser === idUser) {
+                // console.log(allUsers.users[i]);
+                return allUsers.users[i];
             }
           }
           return null;
