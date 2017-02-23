@@ -1,7 +1,11 @@
 <ion-view view-title="{{user.name}} {{user.lastname}}">
   <ion-content class="padding">
-    <img ng-src="/img/ionic.png" style="width: 100px; height: 100px">
+    <img ng-src="img/ionic.png" style="width: 100px; height: 100px">
     <h1>{{user.name}} {{user.lastname}}, {{user.age}} ans</h1>
     <h3>{{user.motto}}</h3>
     <h3>{{user.phone}}</h3>
+    <br/><br/><br/>
+    <button class="button button-full button-balanced" name="edit" ng-click="see(user)"> See on map </button>
+    <button class="button button-full button-dark" name="edit" ng-click="edit(user.idUser)"> Edit this profile </button>
+</ion-content>
 </ion-view>

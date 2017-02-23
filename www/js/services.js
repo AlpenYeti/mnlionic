@@ -50,19 +50,16 @@ angular.module('starter.services', [])
 })
 
 .factory('Users', function($http, $q, $timeout) {
-    var deferred = $q.defer();
-    $http.get('http://carbillet.net/api-digitalGrenoble/users/')
-    .success(function(data,status){
-        $timeout(function () {
-            deferred.resolve( data );
-        },800, false);
-    })
-    .error(function(data,status){
-        deferred.reject('Nope');
-    });
-
     return {
         getAll : function() {
+            var deferred = $q.defer();
+            $http.get('http://carbillet.net/api-digitalGrenoble/users/')
+            .success(function(data,status){
+                    deferred.resolve( data );
+            })
+            .error(function(data,status){
+                deferred.reject('Nope');
+            });
             return deferred.promise;
         },
         getOne: function(idUser, allUsers) {
@@ -72,12 +69,29 @@ angular.module('starter.services', [])
             }
           }
           return null;
-        },
-        put: function(){}
+      },
+        save : function(data) {
+            var deferred = $q.defer();
+            $http.put('http://carbillet.net/api-digitalGrenoble/users/',data)
+            .success(function(data,status){
+                // $timeout(function () {
+                    deferred.resolve( data );
+                // },50, false);
+            })
+            .error(function(data,status){
+                deferred.reject('Nope');
+            });
+        }
     };
     // return {
     //     all: function() {
     //         return users;
     //     }
     // };
+})
+
+.factory('updateUser', function($http,$q) {
+    return {
+
+    }
 });

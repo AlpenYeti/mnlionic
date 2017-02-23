@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','ui-leaflet'])
+angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','ui-leaflet','ngCordova'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -14,6 +14,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','u
     if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
       cordova.plugins.Keyboard.disableScroll(true);
+      cordova.plugins.geolocation.getCurrentLocation().then(success, error);
 
     }
     if (window.StatusBar) {
@@ -60,12 +61,22 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','u
     })
 
     .state('tab.map', {
+      cache:false,
       url: '/map',
       views: {
         'tab-map': {
           templateUrl: 'templates/tab-map.html',
           controller: 'MapCtrl'
         }
+      },
+      resolve: {
+          loc : function($cordovaGeolocation){
+            return $cordovaGeolocation.getCurrentPosition();
+          }
+      },
+      params: {
+          user:{position:{lat:45.182278829823446,lng:5.730400085449219}},
+          zoom:12
       }
     })
 
@@ -95,6 +106,23 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','u
                 }
     }
 })
+
+    .state('tab.edit', {
+      url: '/profil/:idUser/edit',
+      views: {
+        'tab-account': {
+          templateUrl: 'templates/tab-edit.html',
+          controller: 'ProfilEditCtrl'
+        }
+    },
+    resolve: {
+        user:   function(Users,$stateParams) {
+                    return Users.getAll().then(function(allUsers){
+                        return Users.getOne($stateParams.idUser, allUsers);
+                    })
+                }
+    }
+    })
 
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/tab/account');
