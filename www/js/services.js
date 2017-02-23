@@ -49,11 +49,13 @@ angular.module('starter.services', [])
   };
 })
 
-.factory('Users', function($http, $q) {
+.factory('Users', function($http, $q, $timeout) {
     var deferred = $q.defer();
     $http.get('http://carbillet.net/api-digitalGrenoble/users/')
     .success(function(data,status){
-        deferred.resolve(data);
+        $timeout(function () {
+            deferred.resolve( data );
+        },800, false);
     })
     .error(function(data,status){
         deferred.reject('Nope');

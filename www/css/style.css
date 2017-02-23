@@ -4,6 +4,10 @@ ion-content {
     /*url('../img/logo.png')*/
 }
 
+.item-input {
+    background: #fff;
+}
+
 ion-content::-webkit-scrollbar {
     display: none;
 }

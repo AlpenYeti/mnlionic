@@ -40,7 +40,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','u
 
   // Each tab has its own nav history stack:
 
-  .state('tab.chats', {
+    .state('tab.chats', {
       url: '/chats',
       views: {
         'tab-chats': {
@@ -86,8 +86,15 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','u
         templateUrl: 'templates/tab-profil.html',
         controller: 'ProfilCtrl'
       }
+    },
+    resolve: {
+        user:   function(Users,$stateParams) {
+                    return Users.getAll().then(function(allUsers){
+                        return Users.getOne($stateParams.idUser, allUsers);
+                    })
+                }
     }
-  });
+})
 
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/tab/account');

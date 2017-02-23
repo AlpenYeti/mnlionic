@@ -1,4 +1,8 @@
-angular.module('starter.controllers', ['ui-leaflet','google.places'])
+angular.module('starter.controllers', ['ui-leaflet','google.places','ngMaterial'], function($mdThemingProvider) {
+    $mdThemingProvider.theme('docs-dark', 'default')
+      .primaryPalette('yellow')
+      .dark();
+  })
 
 .controller('ChatsCtrl', function($scope, Chats) {
   // With the new view caching in Ionic, Controllers are only called
@@ -28,7 +32,7 @@ angular.module('starter.controllers', ['ui-leaflet','google.places'])
             if($scope.users[i].position !== null) {
                 if($scope.users[i].position.lat !== null && $scope.users[i].position.lng !== null){
                     markers.push({
-                        title: $scope.users[i].name,
+                        message: $scope.users[i].lastname,
                         lat: $scope.users[i].position.lat,
                         lng: $scope.users[i].position.lng,
                         icon: {
@@ -62,17 +66,19 @@ angular.module('starter.controllers', ['ui-leaflet','google.places'])
 
 .controller('AccountCtrl', ['$scope','Users', function($scope, Users) {
   $scope.settings = {
-    enableFriends: true
+    enableFriends: true,
   };
+  $scope.loading = true;
   $scope.users = Users.getAll().then(function(users){
-      $scope.users = users.users;
+    $scope.users = users.users;
+    $scope.loading = false;
+
   }, function(msg){
-      alert(msg);
+        alert(msg);
+        $scope.loading = false;
   });
 
 }])
-.controller('ProfilCtrl', function($scope, $stateParams, Users) {
-    Users.getAll().then(function(allUsers){
-        $scope.user = Users.getOne($stateParams.idUser, allUsers);
-    });
+.controller('ProfilCtrl', function($scope, user, $stateParams) {
+    $scope.user = user;
 });
