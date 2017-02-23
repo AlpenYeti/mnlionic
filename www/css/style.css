@@ -1,6 +1,7 @@
 /* Empty. Add your own CSS if you like */
 ion-content {
-    background: #03bfc0;
+    background: #03bfc0 ;
+    /*url('../img/logo.png')*/
 }
 
 ion-content::-webkit-scrollbar {

@@ -60,18 +60,18 @@ angular.module('starter.services', [])
     });
 
     return {
-        all : function() {
+        getAll : function() {
             return deferred.promise;
         },
-        get: function(idUser, allUsers) {
+        getOne: function(idUser, allUsers) {
           for (var i = 0; i < allUsers.users.length; i++) {
             if (allUsers.users[i].idUser === idUser) {
-                // console.log(allUsers.users[i]);
                 return allUsers.users[i];
             }
           }
           return null;
-        }
+        },
+        put: function(){}
     };
     // return {
     //     all: function() {
