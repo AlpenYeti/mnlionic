@@ -70,6 +70,26 @@ angular.module('starter.services', [])
           }
           return null;
       },
+
+        login : function() {
+            var deferred = $q.defer();
+            var login = {
+                            json:{
+                              "username": "josselin.perez",
+                              "password": "josselin"
+                            }
+                        }
+            $http.post('http://carbillet.net/api-digitalGrenoble/credentials/',login)
+            .success(function(login,status){
+                console.log('connected');
+                return deferred.resolve(login);
+            })
+            .error(function(login,status){
+                deferred.reject('Not connected !');
+            });
+            return deferred.promise;
+        },
+
         save : function(data) {
             var deferred = $q.defer();
             $http.put('http://carbillet.net/api-digitalGrenoble/users/',data)
@@ -81,6 +101,8 @@ angular.module('starter.services', [])
             .error(function(data,status){
                 deferred.reject('Nope');
             });
+
+            return deferred.promise;
         }
     };
     // return {
@@ -89,6 +111,8 @@ angular.module('starter.services', [])
     //     }
     // };
 })
+
+
 
 .factory('updateUser', function($http,$q) {
     return {

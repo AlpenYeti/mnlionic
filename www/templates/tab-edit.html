@@ -1,18 +1,18 @@
 <ion-view view-title=" Edit {{user.name}} {{user.lastname}}">
   <ion-content class="padding">
       <h1>Edit {{user.name }} {{user.lastname}}</h1>
-      <form>
+      <form ng-submit="post(user)">
           <label class="item item-input item-floating-label">
               <span class="input-label">Age</span>
-              <input type="text" name="age" placeholder="Age" ng-model="age">
+              <input type="text" name="age" placeholder="Age" ng-model="user.age">
           </label>
           <label class="item item-input item-floating-label">
               <span class="input-label">Adresse</span>
-              <input type="text" name="adress" placeholder="Adresse" g-places-autocomplete ng-model="adress">
+              <input type="text" name="adress" placeholder="Adresse" g-places-autocomplete ng-model="user.adress">
           </label>
           <label class="item item-input item-floating-label">
               <span class="input-label">Telephone</span>
-              <input type="text" name="adress" placeholder="Telephone" ng-model="tel">
+              <input type="tel" name="phone" placeholder="Telephone" ng-model="user.phone">
           </label>
           <button type="submit" class="button button-full button-positive">Submit</button>
       </form>

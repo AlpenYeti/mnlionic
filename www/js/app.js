@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','ui-leaflet','ngCordova'])
+angular.module('starter', ['ionic', 'starter.controllers', 'starter.mapControllers', 'starter.services','ui-leaflet','ngCordova'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -24,8 +24,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','u
   });
 })
 
-.config(function($stateProvider, $urlRouterProvider) {
-
+.config(function($stateProvider, $urlRouterProvider,$httpProvider) {
+    $httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8'; $httpProvider.defaults.headers.put['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8';
   // Ionic uses AngularUI Router which uses the concept of states
   // Learn more here: https://github.com/angular-ui/ui-router
   // Set up the various states which the app can be in.
@@ -112,7 +112,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','u
       views: {
         'tab-account': {
           templateUrl: 'templates/tab-edit.html',
-          controller: 'ProfilEditCtrl'
+          controller: 'ProfilCtrl'
         }
     },
     resolve: {
@@ -122,6 +122,33 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','u
                     })
                 }
     }
+    })
+
+    .state('tab.update', {
+      url: '/profil/:idUser',
+      views: {
+        'tab-account': {
+          templateUrl: 'templates/tab-profil.html',
+          controller: 'ProfilCtrl'
+        }
+      },
+        resolve: {
+            user:   function(Users,$stateParams) {
+                console.log($stateParams.user);
+                    if($stateParams.user == null){
+                        // console.log('wut');
+                        return Users.getAll().then(function(allUsers){
+                            return Users.getOne($stateParams.idUser, allUsers);
+                        })
+                    } else {
+                        // console.log('bite');
+                        return $stateParams.user;
+                    }
+            }
+        },
+        params: {
+            user:{}
+        }
     })
 
   // if none of the above states are matched, use this as the fallback

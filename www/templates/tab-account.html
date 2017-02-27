@@ -1,11 +1,15 @@
 <ion-view view-title="Account">
   <ion-content>
+      <ion-refresher
+        pulling-text="Pull to refresh..."
+        on-refresh="doRefresh()">
+      </ion-refresher>
     <ion-list>
     <ion-toggle  ng-model="settings.enableFriends">
         Show Friends
     </ion-toggle>
     </ion-list>
-    <ion-spinner icon="android" ng-show="loading">Loading</ion-spinner>
+    <ion-spinner icon="android" ng-show="loading" style="text-align = center;">Loading</ion-spinner>
     <h1 ng-hide="settings.enableFriends">Nothing to Show</h1>
     <ion-list ng-show="settings.enableFriends">
         <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="user in users" type="item-text-wrap" href="#/tab/profil/{{user.idUser}}">
