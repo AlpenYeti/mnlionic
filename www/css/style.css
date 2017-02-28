@@ -14,5 +14,5 @@ ion-content::-webkit-scrollbar {
 
 div.angular-leaflet-map {
     width: 100vw;
-    height: 70vh;
+    height: 50vh;
 }

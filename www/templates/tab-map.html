@@ -2,14 +2,13 @@
     <ion-nav-buttons side="right">
         <button ng-click="locate();" class="button button-icon icon ion-pinpoint"></button>
     </ion-nav-buttons>
-    <ion-content scroll="false">
-        <leaflet center="center" markers="markers"></leaflet>
-        <hr/>
-        <p>
-          <button ng-click="changeTiles('opencyclemap')" class="btn btn-default">OpenCycleMaps</button>
-          <button ng-click="changeTiles('openstreetmap')" class="btn btn-default">OpenStreetMaps</button>
-          <button ng-click="changeTiles('mapbox_outdoors')" class="btn btn-default">Mapbox Outdoors</button>
-          <button ng-click="changeTiles('mapbox_satellite')" class="btn btn-default">Mapbox Satellite</button>
-        </p>
+    <ion-content scroll="let ure child free">
+        <div style="position:absolute">
+            <leaflet center="center" markers="markers"></leaflet>
+        </div>
+            <hr/>
+            <div style="height:50vh;">
+                <ng-include src="'templates/tab-account.html'"></ng-include>
+            </div>
     </ion-content>
 </ion-view>

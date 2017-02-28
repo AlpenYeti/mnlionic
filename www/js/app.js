@@ -90,6 +90,20 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.mapControlle
     }
   })
 
+  .state('tab.account.map', {
+      url:'/main',
+      views: {
+          'tab-map': {
+            templateUrl: 'templates/tab-map.html',
+            controller: 'MapCtrl'
+          },
+          'tab-userlist': {
+            templateUrl: 'templates/tab-account.html',
+            controller: 'AccountCtrl'
+          }
+      }
+  })
+
   .state('tab.eval', {
       url: '/eval',
       views: {
@@ -162,7 +176,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.mapControlle
     })
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/tab/account');
+  $urlRouterProvider.otherwise('/tab/map');
   function runBlock($rootScope) {
    angular.extend($rootScope, {
      center: {},
