@@ -77,3 +77,13 @@ $scope.users = [];
         $scope.user = data;
     };
 })
+
+.controller('EvalCtrl',function($scope){
+    $scope.user = {
+        name:'Philippe',
+        mass:'45'
+    }
+    $scope.post = function(user) {
+        console.log(user);
+    }
+});

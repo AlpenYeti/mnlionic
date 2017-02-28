@@ -1,0 +1,16 @@
+<ion-view view-title="Eval">
+  <ion-content class="padding">
+      <h1>Eval</h1>
+      <form  ng-submit="post(user)">
+          <label class="item item-input item-floating-label">
+              <span class="input-label">name</span>
+              <input type="text" name="name" placeholder="name" ng-model="user.name"/>
+          </label>
+          <label class="item item-input item-floating-label">
+              <span class="input-label">mass</span>
+              <input type="text" name="mass" placeholder="Mass" ng-model="user.mass"/>
+          </label>
+          <button type="submit" class="button button-full button-positive">Submit</button>
+      </form>
+  </ion-content>
+</ion-view>

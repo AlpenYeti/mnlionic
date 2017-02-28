@@ -90,6 +90,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.mapControlle
     }
   })
 
+  .state('tab.eval', {
+      url: '/eval',
+      views: {
+          'tab-eval': {
+              templateUrl: 'templates/tab-eval.html',
+              controller: 'EvalCtrl'
+          }
+      }
+  })
+
   .state('tab.profil', {
     url: '/profil/:idUser',
     views: {
