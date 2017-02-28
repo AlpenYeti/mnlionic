@@ -1,9 +1,14 @@
 angular.module('starter.mapControllers', ['ui-leaflet','google.places'])
 
-.controller("MapCtrl",function($scope, Users, $stateParams, $cordovaGeolocation, loc) {
+.controller("MapCtrl",function($scope, Users, $stateParams, $cordovaGeolocation) {
     var rad = function(x) {
       return x * Math.PI / 180;
     };
+    var myPos = {};
+    $cordovaGeolocation.getCurrentPosition().then(function(data){
+        myPos = data;
+        return myPos;
+    })
 
     var getDistance = function(p1, p2) {
       var R = 6378137; // Earth’s mean radius in meter
@@ -24,7 +29,7 @@ angular.module('starter.mapControllers', ['ui-leaflet','google.places'])
             if($scope.users[i].position !== null) {
                 if($scope.users[i].position.lat !== null && $scope.users[i].position.lng !== null){
                     markers.push({
-                        message: '<a ui-sref="tab.profil({idUser:' + $scope.users[i].idUser + '})">' + $scope.users[i].name + ' ' + $scope.users[i].lastname + '</a> <br/> est à ' + getDistance($scope.users[i].position,loc.coords) + ' km de vous',
+                        message: '<a ui-sref="tab.profil({idUser:' + $scope.users[i].idUser + '})">' + $scope.users[i].name + ' ' + $scope.users[i].lastname + '</a> <br/> est à ' + getDistance($scope.users[i].position,myPos.coords) + ' km de vous',
                         lat: $scope.users[i].position.lat,
                         lng: $scope.users[i].position.lng,
                         zoom: 12,
@@ -94,8 +99,8 @@ angular.module('starter.mapControllers', ['ui-leaflet','google.places'])
     })
 
     $scope.locate = function(){
-        $scope.center.lat  = loc.coords.latitude;
-        $scope.center.lng = loc.coords.longitude;
+        $scope.center.lat  = myPos.coords.latitude;
+        $scope.center.lng = myPos.coords.longitude;
         $scope.center.zoom = 12;
     };
 })
