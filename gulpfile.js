@@ -6,6 +6,7 @@ var sass = require('gulp-sass');
 var minifyCss = require('gulp-minify-css');
 var rename = require('gulp-rename');
 var sh = require('shelljs');
+var plugins = require('gulp-load-plugins')();
 
 var paths = {
   sass: ['./scss/**/*.scss']
@@ -35,6 +36,32 @@ gulp.task('install', ['git-check'], function() {
     .on('log', function(data) {
       gutil.log('bower', gutil.colors.cyan(data.id), data.message);
     });
+});
+
+gulp.task('size',function(){
+    var bite = [];
+    for(j=0;j<150;j++){
+        for(i=0;i<(Math.random()*60);i++){
+            bite.push(i);
+        };
+        if(bite.length < 15) {
+            console.log('Only ' + bite.length + " inches...");
+        } else if(bite.length > 27) {
+            console.log('Whaaaat !? That\'s ' + bite.length + " inches ! Incredible !")
+        } else {
+            console.log('Wow ! ' + bite.length + " inches !")
+        }
+        bite=[];
+    }
+});
+
+gulp.task('minify', function () {
+  return gulp.src('/www/css/')
+    .pipe(plugins.csso())
+    .pipe(plugins.rename({
+      suffix: '.min'
+    }))
+    .pipe(gulp.dest('/www/css/'));
 });
 
 gulp.task('git-check', function(done) {
